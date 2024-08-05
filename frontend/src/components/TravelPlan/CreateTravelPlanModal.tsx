@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { createTravelPlan } from "../../services/travelPlans";
+import React, {useState} from 'react';
+import {createTravelPlan} from "../../services/travelPlans";
+import {isFutureDate} from "../../utils/dates";
 
 interface CreateTravelPlanModalProps {
     show: boolean;
@@ -18,22 +19,39 @@ const CreateTravelPlanModal: React.FC<CreateTravelPlanModalProps> = ({ show, han
         endDate: false,
     });
 
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
-
-        // Check for empty fields and update invalidFields state
+    const isDataValid = () => {
         const titleInvalid = !title.trim();
-        const startDateInvalid = !startDate;
-        const endDateInvalid = !endDate;
+        const startDateInvalid = !startDate || !isFutureDate(startDate);
+        const endDateInvalid = !endDate || !isFutureDate(endDate) || (startDate && new Date(startDate) > new Date(endDate));
 
         setInvalidFields({
             title: titleInvalid,
             startDate: startDateInvalid,
-            endDate: endDateInvalid,
+            endDate: !!endDateInvalid,
         });
 
         if (titleInvalid || startDateInvalid || endDateInvalid) {
-            setError('Todos os campos são obrigatórios');
+            let errorMessage = 'Todos os campos são obrigatórios e devem ser válidos.';
+
+            if (startDateInvalid) {
+                errorMessage = 'A data de início deve ser uma data futura.';
+            }
+
+            if (endDateInvalid) {
+                errorMessage = 'A data de término deve ser uma data futura e posterior à data de início.';
+            }
+
+            setError(errorMessage);
+            return false;
+        }
+
+        return true;
+    }
+
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
+
+        if(!isDataValid()){
             return;
         }
 

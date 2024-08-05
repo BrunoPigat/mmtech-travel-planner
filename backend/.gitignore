@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# NeDB data files
+/data
+
 # testing
 /coverage
 

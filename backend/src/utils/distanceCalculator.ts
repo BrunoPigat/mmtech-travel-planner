@@ -1,6 +1,9 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
 
-const API_KEY = '5b3ce3597851110001cf6248de3266a7d1714fb2a504a2791f662426';
+dotenv.config();
+
+const API_KEY = process.env.OPENROUTESERVICE_API_KEY;
 
 export const calculateDistance = async (start: { lat: number; lng: number }, end: { lat: number; lng: number }) => {
     try {

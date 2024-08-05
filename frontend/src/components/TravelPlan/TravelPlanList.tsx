@@ -8,7 +8,6 @@ import CreateTravelPlanModal from "./CreateTravelPlanModal";
 import ConfirmModal from "../Modal/ConfirmModal";
 
 const TravelPlanList: React.FC = () => {
-
     const [travelPlans, setTravelPlans] = useState<TravelPlan[]>([]);
     const [error, setError] = useState<string | null>(null);
 

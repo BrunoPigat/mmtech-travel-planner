@@ -4,7 +4,7 @@ import HomeHeader from "../components/Home/HomeHeader";
 
 const Home: React.FC = () => {
     return (
-        <div className="p-5 h-100">
+        <div className="p-5">
             <section>
                 <HomeHeader/>
             </section>

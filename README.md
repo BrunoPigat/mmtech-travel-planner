@@ -1,4 +1,4 @@
-```markdown
+
 # MM Tech Team Technical Test
 
 This project demonstrates a simple application using Node.js, NeDB, React.js with TypeScript, and the OpenRouteService API. The application allows users to add, delete, and organize destinations, and calculates the distance and travel time between points using the OpenRouteService API.
@@ -9,12 +9,9 @@ The project is divided into two main parts:
 - **Backend**: Node.js server with NeDB for data storage.
 - **Frontend**: React.js application with TypeScript.
 
-## Getting Started
-
-### Backend
+### API Key
 
 1. **Navigate to the Backend Directory**
-
    ```bash
    cd backend
    ```
@@ -90,4 +87,4 @@ OPENROUTESERVICE_API_KEY=your_api_key_here
 3. **Access the Application**
 
    Open your web browser and navigate to `http://localhost:3000` to view the application.
-```
+

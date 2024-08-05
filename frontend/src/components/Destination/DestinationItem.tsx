@@ -1,13 +1,6 @@
 import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-    faAlignRight,
-    faAngleLeft,
-    faAngleRight,
-    faEye,
-    faRightToBracket,
-    faTrash
-} from "@fortawesome/free-solid-svg-icons";
+import {faAngleLeft, faAngleRight, faEye, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {TravelDestination} from '../../types/TravelDestination';
 
 interface DestinationItemProps {

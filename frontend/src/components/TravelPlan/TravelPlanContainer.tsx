@@ -1,7 +1,7 @@
 import React from 'react';
 import {TravelPlan} from '../../types/TravelPlan';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPenClip, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {faPenClip, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {useNavigate} from "react-router-dom";
 
 interface TravelPlanContainerProps {

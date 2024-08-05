@@ -1,8 +1,7 @@
-import React, {useState, useEffect, useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import L from 'leaflet';
 import {MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents} from 'react-leaflet';
 import {TravelDestination} from '../types/TravelDestination';
-import {Coordinates} from '../types/geo';
 
 const createCustomIcon = (index: number) => {
     return L.divIcon({

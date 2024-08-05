@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import React from 'react';
+import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom';
 import './App.css';
 
 import Home from './pages/Home';
@@ -9,7 +9,7 @@ import NotFound from './pages/NotFound';
 import TravelPlanShow from "./pages/TravelPlanShow";
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
-import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import {AuthProvider, useAuth} from "./contexts/AuthContext";
 import AuthenticatedRoute from "./components/routes/AuthenticatedRoute";
 
 const AppContent: React.FC = () => {

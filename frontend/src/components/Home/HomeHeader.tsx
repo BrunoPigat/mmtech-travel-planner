@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import WeatherInfo from "./WeatherInfo";
-import {weatherLocations} from "../../consts/weather";
-import {WeatherLocation} from "../../types/weather";
+import React from 'react';
 import WeatherInfoList from "./WeatherInfoList";
 
 const HomeHeader: React.FC = () => {

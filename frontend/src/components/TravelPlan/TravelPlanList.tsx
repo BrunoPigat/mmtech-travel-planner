@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, {useEffect, useState} from 'react';
 import {TravelPlan} from "../../types/TravelPlan";
 import {deleteTravelPlan, getTravelPlans} from "../../services/travelPlans";
 import TravelPlanContainer from "./TravelPlanContainer";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {useNavigate} from "react-router-dom";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import CreateTravelPlanModal from "./CreateTravelPlanModal";
 import ConfirmModal from "../Modal/ConfirmModal";

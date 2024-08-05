@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlane} from "@fortawesome/free-solid-svg-icons";
 
@@ -13,14 +13,14 @@ interface DestinationFormProps {
 }
 
 const DestinationForm: React.FC<DestinationFormProps> = ({
-                                                             loading,
-                                                             error,
-                                                             destinations,
-                                                             distanceToPrevious,
-                                                             handleAddDestination,
-                                                             title,
-                                                             setTitle,
-                                                         }) => {
+     loading,
+     error,
+     destinations,
+     distanceToPrevious,
+     handleAddDestination,
+     title,
+     setTitle,
+ }) => {
     return (
         <div className='p-4 rounded-5 bg-body-secondary'>
             <h1>Novo Destino</h1>

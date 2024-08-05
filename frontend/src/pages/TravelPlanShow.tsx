@@ -1,14 +1,14 @@
-import React, {useState, useEffect, useMemo} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {TravelDestination} from "../types/TravelDestination";
 import {
     createTravelPlanDestination,
-    deleteTravelPlanDestination, getTravelPlan, updateDestinationIndex,
+    deleteTravelPlanDestination,
+    getTravelPlan,
+    updateDestinationIndex,
 } from "../services/travelPlans";
-import L, {marker} from "leaflet";
 
 // @ts-ignore
-import {MapContainer, Marker, Popup, TileLayer, useMapEvents} from "react-leaflet";
 import ConfirmModal from "../components/Modal/ConfirmModal";
 import {Coordinates} from "../types/geo";
 import {getTravelTime} from "../services/route";
@@ -17,10 +17,6 @@ import MapComponent from "../components/Map";
 import TravelPlanHeader from "../components/TravelPlan/TravelPlanHeader";
 import DestinationList from "../components/Destination/DestinationList";
 import DestinationForm from "../components/Destination/DestinationForm";
-import {faPlane} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Simulate} from "react-dom/test-utils";
-import load = Simulate.load;
 
 const TravelPlanShow: React.FC = () => {
     const {id} = useParams<{ id: string }>();

@@ -57,10 +57,6 @@ The project is divided into two main parts:
 
    The React app will run on `http://localhost:3000`.
 
-## API Usage
-
-The backend server provides an API for managing destinations. It also integrates with the OpenRouteService API to calculate distances and travel times.
-
 ### API Key
 
 The project includes a free OpenRouteService API key with usage limits. If you exceed the free plan's limits or need additional features, you can obtain your own API key by creating an account at [OpenRouteService](https://openrouteservice.org/). To use your own API key, set it in the backend configuration file (e.g., `.env`).

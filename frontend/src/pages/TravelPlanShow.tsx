@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {TravelDestination} from "../types/TravelDestination";
 import {
@@ -86,52 +86,55 @@ const TravelPlanShow: React.FC = () => {
         }
     };
 
-    const handleAddDestination = async (event: React.FormEvent) => {
-        event.preventDefault();
+    const handleAddDestination = useCallback(
+        async (event: React.FormEvent) => {
+            event.preventDefault();
 
-        if (!id) {
-            return;
-        }
+            if (!id) {
+                return;
+            }
 
-        if (!title || !lat || !lng) {
-            setError('Preencha todos os campos');
-            return;
-        }
+            if (!title || !lat || !lng) {
+                setError('Preencha todos os campos');
+                return;
+            }
 
-        try {
-            setLoading(true);
-            await createTravelPlanDestination({
-                title,
-                index: destinations.length,
-                distance_to_previous_destination: distanceToPrevious,
-                travel_time_to_previous_destination: travelTimeToPrevious,
-                travel_plan_id: id,
-                lat,
-                lng
-            });
+            try {
+                setLoading(true);
+                await createTravelPlanDestination({
+                    title,
+                    index: destinations.length,
+                    distance_to_previous_destination: distanceToPrevious,
+                    travel_time_to_previous_destination: travelTimeToPrevious,
+                    travel_plan_id: id,
+                    lat,
+                    lng
+                });
 
-            setTitle('');
-            setDistanceToPrevious(0);
-            setTravelTimeToPrevious(0);
-            setLat('');
-            setLng('');
-            setMarkerPosition(null);
-            setError('');
+                setTitle('');
+                setDistanceToPrevious(0);
+                setTravelTimeToPrevious(0);
+                setLat('');
+                setLng('');
+                setMarkerPosition(null);
+                setError('');
 
-            await loadTravelData();
-        } catch (e) {
-            setError('Erro ao adicionar destino');
-        } finally {
-            setLoading(false);
-        }
-    };
+                await loadTravelData();
+            } catch (e) {
+                setError('Erro ao adicionar destino');
+            } finally {
+                setLoading(false);
+            }
+        },
+        [id, loadTravelData]
+    );
 
     const handleConfirmDeleteDestination = (destination: TravelDestination) => {
         setDestinationToDelete(destination);
         setShowConfirmModal(true);
     };
 
-    const handleDeleteDestination = async () => {
+    const handleDeleteDestination = useCallback(async () => {
         if (!destinationToDelete) {
             return;
         }
@@ -147,7 +150,7 @@ const TravelPlanShow: React.FC = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [loadTravelData]);
 
     const handleCancelDeleteDestination = () => {
         setDestinationToDelete(null);
@@ -187,21 +190,24 @@ const TravelPlanShow: React.FC = () => {
         setMapCenter(coordinates);
     }
 
-    const handleChangeDestinationIndex = async (id: string, isForward: boolean) => {
-        if (!travelPlan) {
-            return;
-        }
+    const handleChangeDestinationIndex = useCallback(
+        async (id: string, isForward: boolean) => {
+            if (!travelPlan) {
+                return;
+            }
 
-        try {
-            setLoading(true);
-            await updateDestinationIndex({id, isForward});
-            await loadTravelData();
-        } catch (e) {
-            setError('Erro ao alterar ordem de destinos');
-        } finally {
-            setLoading(false);
-        }
-    }
+            try {
+                setLoading(true);
+                await updateDestinationIndex({ id, isForward });
+                await loadTravelData();
+            } catch (e) {
+                setError('Erro ao alterar ordem de destinos');
+            } finally {
+                setLoading(false);
+            }
+        },
+        [travelPlan, loadTravelData]
+    );
 
     return (
         <div className="container">

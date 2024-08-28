@@ -4,6 +4,7 @@ const NotFound: React.FC = () => {
 
     return (
         <div>
+            Nada Encontrado
         </div>
     );
 };

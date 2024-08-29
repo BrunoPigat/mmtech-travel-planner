@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {TravelPlan} from "../../types/TravelPlan";
 import {deleteTravelPlan, getTravelPlans} from "../../services/travelPlans";
 import TravelPlanContainer from "./TravelPlanContainer";
@@ -50,19 +50,19 @@ const TravelPlanList: React.FC = () => {
         setShowConfirmModal(true);
     };
 
-    const handleDeletePlan = async () => {
+    const handleDeletePlan = useCallback(async () => {
         try {
-            if(!travelPlanToDelete){
-                return
+            if (!travelPlanToDelete) {
+                return;
             }
 
             setShowConfirmModal(false);
             await deleteTravelPlan(travelPlanToDelete._id);
             await loadTravelPlans();
-        } catch (e){
+        } catch (e) {
             setError('Erro ao deletar viagem');
         }
-    };
+    }, [travelPlanToDelete]);
 
     const handleCancelDeletePlan = () => {
         setShowConfirmModal(false);

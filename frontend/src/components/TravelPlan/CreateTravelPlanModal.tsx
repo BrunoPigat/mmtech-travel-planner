@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {createTravelPlan} from "../../services/travelPlans";
 import {isFutureDate} from "../../utils/dates";
 
@@ -19,7 +19,7 @@ const CreateTravelPlanModal: React.FC<CreateTravelPlanModalProps> = ({ show, han
         endDate: false,
     });
 
-    const isDataValid = () => {
+    const isDataValid = useCallback(() => {
         const titleInvalid = !title.trim();
         const startDateInvalid = !startDate || !isFutureDate(startDate);
         const endDateInvalid = !endDate || !isFutureDate(endDate) || (startDate && new Date(startDate) > new Date(endDate));
@@ -46,12 +46,12 @@ const CreateTravelPlanModal: React.FC<CreateTravelPlanModalProps> = ({ show, han
         }
 
         return true;
-    }
+    }, [title, startDate, endDate]);
 
-    const handleSubmit = async (event: React.FormEvent) => {
+    const handleSubmit = useCallback(async (event: React.FormEvent) => {
         event.preventDefault();
 
-        if(!isDataValid()){
+        if (!isDataValid()) {
             return;
         }
 
@@ -62,25 +62,25 @@ const CreateTravelPlanModal: React.FC<CreateTravelPlanModalProps> = ({ show, han
         } catch (err) {
             setError('Erro ao criar viagem');
         }
-    };
+    }, [title, startDate, endDate, isDataValid]);
 
-    const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleTitleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value);
-        if (error) setError(null); // Clear error when user starts typing
-        if (invalidFields.title) setInvalidFields(prev => ({ ...prev, title: false }));
-    };
+        if (error) setError(null);
+        setInvalidFields(prev => ({ ...prev, title: false }));
+    }, [error]);
 
-    const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleStartDateChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setStartDate(e.target.value);
-        if (error) setError(null); // Clear error when user starts typing
-        if (invalidFields.startDate) setInvalidFields(prev => ({ ...prev, startDate: false }));
-    };
+        if (error) setError(null);
+        setInvalidFields(prev => ({ ...prev, startDate: false }));
+    }, [error]);
 
-    const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleEndDateChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setEndDate(e.target.value);
-        if (error) setError(null); // Clear error when user starts typing
-        if (invalidFields.endDate) setInvalidFields(prev => ({ ...prev, endDate: false }));
-    };
+        if (error) setError(null);
+        setInvalidFields(prev => ({ ...prev, endDate: false }));
+    }, [error]);
 
     return (
         <>
